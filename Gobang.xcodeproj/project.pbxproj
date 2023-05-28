@@ -3,23 +3,61 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		595B3F0C2A2187C60002A3AC /* GobangApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 595B3F0B2A2187C60002A3AC /* GobangApp.swift */; };
-		595B3F0E2A2187C60002A3AC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 595B3F0D2A2187C60002A3AC /* ContentView.swift */; };
 		595B3F102A2187D20002A3AC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 595B3F0F2A2187D20002A3AC /* Assets.xcassets */; };
 		595B3F132A2187D20002A3AC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 595B3F122A2187D20002A3AC /* Preview Assets.xcassets */; };
+		595B3F1C2A21884F0002A3AC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 595B3F1B2A21884F0002A3AC /* GoogleService-Info.plist */; };
+		595B3F202A218C000002A3AC /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 595B3F1F2A218C000002A3AC /* FirebaseAnalytics */; };
+		595B3F222A218C000002A3AC /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 595B3F212A218C000002A3AC /* FirebaseFirestoreSwift */; };
+		595B3F242A218C000002A3AC /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 595B3F232A218C000002A3AC /* FirebaseStorage */; };
+		595B3F262A218C000002A3AC /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 595B3F252A218C000002A3AC /* FirebaseAuth */; };
+		595B3F282A218C000002A3AC /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 595B3F272A218C000002A3AC /* FirebaseFirestore */; };
+		595B3F2A2A218C000002A3AC /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 595B3F292A218C000002A3AC /* FirebaseDatabase */; };
+		595B3F2E2A218DB50002A3AC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 595B3F2D2A218DB50002A3AC /* ViewController.swift */; };
+		595B3F332A218E3E0002A3AC /* LobbyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 595B3F322A218E3E0002A3AC /* LobbyView.swift */; };
+		595B3F3B2A218F2E0002A3AC /* UserRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 595B3F3A2A218F2E0002A3AC /* UserRoom.swift */; };
+		595B3F3E2A2191700002A3AC /* StateControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 595B3F3D2A2191700002A3AC /* StateControl.swift */; };
+		595B3F412A21926D0002A3AC /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 595B3F402A21926C0002A3AC /* ProfileView.swift */; };
+		595B3F452A2192B60002A3AC /* LogInSignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 595B3F442A2192B60002A3AC /* LogInSignUpView.swift */; };
+		595B3F492A2193F00002A3AC /* ShowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 595B3F482A2193F00002A3AC /* ShowViewModel.swift */; };
+		595B3F4E2A21D03C0002A3AC /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 595B3F4D2A21D03C0002A3AC /* AlertView.swift */; };
+		595B3F532A21DADB0002A3AC /* AddRoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 595B3F522A21DADB0002A3AC /* AddRoomView.swift */; };
+		595B3F592A21EFFB0002A3AC /* extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 595B3F582A21EFFB0002A3AC /* extension.swift */; };
+		595B3F5D2A21F5F60002A3AC /* EditPersonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 595B3F5C2A21F5F60002A3AC /* EditPersonView.swift */; };
+		595B3F612A2218E50002A3AC /* GameControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 595B3F602A2218E50002A3AC /* GameControl.swift */; };
+		595B3F642A2232410002A3AC /* WaitRoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 595B3F632A2232410002A3AC /* WaitRoomView.swift */; };
+		595B3F672A22C9100002A3AC /* GameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 595B3F662A22C9100002A3AC /* GameModel.swift */; };
+		595B3F6B2A22F5220002A3AC /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 595B3F6A2A22F5220002A3AC /* GameView.swift */; };
+		595B3F6F2A232C160002A3AC /* GridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 595B3F6E2A232C160002A3AC /* GridView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		595B3F082A2187C60002A3AC /* Gobang.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gobang.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		595B3F0B2A2187C60002A3AC /* GobangApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GobangApp.swift; sourceTree = "<group>"; };
-		595B3F0D2A2187C60002A3AC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		595B3F0F2A2187D20002A3AC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		595B3F122A2187D20002A3AC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		595B3F142A2187D20002A3AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		595B3F1B2A21884F0002A3AC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		595B3F2D2A218DB50002A3AC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		595B3F322A218E3E0002A3AC /* LobbyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LobbyView.swift; sourceTree = "<group>"; };
+		595B3F3A2A218F2E0002A3AC /* UserRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRoom.swift; sourceTree = "<group>"; };
+		595B3F3D2A2191700002A3AC /* StateControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateControl.swift; sourceTree = "<group>"; };
+		595B3F402A21926C0002A3AC /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		595B3F442A2192B60002A3AC /* LogInSignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInSignUpView.swift; sourceTree = "<group>"; };
+		595B3F482A2193F00002A3AC /* ShowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowViewModel.swift; sourceTree = "<group>"; };
+		595B3F4D2A21D03C0002A3AC /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
+		595B3F522A21DADB0002A3AC /* AddRoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRoomView.swift; sourceTree = "<group>"; };
+		595B3F582A21EFFB0002A3AC /* extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extension.swift; sourceTree = "<group>"; };
+		595B3F5C2A21F5F60002A3AC /* EditPersonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPersonView.swift; sourceTree = "<group>"; };
+		595B3F602A2218E50002A3AC /* GameControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameControl.swift; sourceTree = "<group>"; };
+		595B3F632A2232410002A3AC /* WaitRoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitRoomView.swift; sourceTree = "<group>"; };
+		595B3F662A22C9100002A3AC /* GameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModel.swift; sourceTree = "<group>"; };
+		595B3F6A2A22F5220002A3AC /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
+		595B3F6E2A232C160002A3AC /* GridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -27,6 +65,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				595B3F2A2A218C000002A3AC /* FirebaseDatabase in Frameworks */,
+				595B3F202A218C000002A3AC /* FirebaseAnalytics in Frameworks */,
+				595B3F222A218C000002A3AC /* FirebaseFirestoreSwift in Frameworks */,
+				595B3F242A218C000002A3AC /* FirebaseStorage in Frameworks */,
+				595B3F282A218C000002A3AC /* FirebaseFirestore in Frameworks */,
+				595B3F262A218C000002A3AC /* FirebaseAuth in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -53,8 +97,13 @@
 			isa = PBXGroup;
 			children = (
 				595B3F0B2A2187C60002A3AC /* GobangApp.swift */,
-				595B3F0D2A2187C60002A3AC /* ContentView.swift */,
+				595B3F2D2A218DB50002A3AC /* ViewController.swift */,
+				595B3F372A218E840002A3AC /* Model */,
+				595B3F352A218E570002A3AC /* ViewModel */,
+				595B3F302A218DF60002A3AC /* View */,
+				595B3F572A21EFC40002A3AC /* Other */,
 				595B3F0F2A2187D20002A3AC /* Assets.xcassets */,
+				595B3F1B2A21884F0002A3AC /* GoogleService-Info.plist */,
 				595B3F142A2187D20002A3AC /* Info.plist */,
 				595B3F112A2187D20002A3AC /* Preview Content */,
 			);
@@ -67,6 +116,81 @@
 				595B3F122A2187D20002A3AC /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		595B3F302A218DF60002A3AC /* View */ = {
+			isa = PBXGroup;
+			children = (
+				595B3F692A22F50D0002A3AC /* Game */,
+				595B3F512A21DA780002A3AC /* Room */,
+				595B3F4C2A21D0210002A3AC /* Other */,
+				595B3F432A21927C0002A3AC /* Start */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		595B3F352A218E570002A3AC /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				595B3F3D2A2191700002A3AC /* StateControl.swift */,
+				595B3F602A2218E50002A3AC /* GameControl.swift */,
+				595B3F482A2193F00002A3AC /* ShowViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		595B3F372A218E840002A3AC /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				595B3F3A2A218F2E0002A3AC /* UserRoom.swift */,
+				595B3F662A22C9100002A3AC /* GameModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		595B3F432A21927C0002A3AC /* Start */ = {
+			isa = PBXGroup;
+			children = (
+				595B3F402A21926C0002A3AC /* ProfileView.swift */,
+				595B3F322A218E3E0002A3AC /* LobbyView.swift */,
+				595B3F5C2A21F5F60002A3AC /* EditPersonView.swift */,
+				595B3F442A2192B60002A3AC /* LogInSignUpView.swift */,
+			);
+			path = Start;
+			sourceTree = "<group>";
+		};
+		595B3F4C2A21D0210002A3AC /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				595B3F4D2A21D03C0002A3AC /* AlertView.swift */,
+			);
+			path = Other;
+			sourceTree = "<group>";
+		};
+		595B3F512A21DA780002A3AC /* Room */ = {
+			isa = PBXGroup;
+			children = (
+				595B3F522A21DADB0002A3AC /* AddRoomView.swift */,
+				595B3F632A2232410002A3AC /* WaitRoomView.swift */,
+			);
+			path = Room;
+			sourceTree = "<group>";
+		};
+		595B3F572A21EFC40002A3AC /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				595B3F582A21EFFB0002A3AC /* extension.swift */,
+			);
+			path = Other;
+			sourceTree = "<group>";
+		};
+		595B3F692A22F50D0002A3AC /* Game */ = {
+			isa = PBXGroup;
+			children = (
+				595B3F6A2A22F5220002A3AC /* GameView.swift */,
+				595B3F6E2A232C160002A3AC /* GridView.swift */,
+			);
+			path = Game;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -85,6 +209,14 @@
 			dependencies = (
 			);
 			name = Gobang;
+			packageProductDependencies = (
+				595B3F1F2A218C000002A3AC /* FirebaseAnalytics */,
+				595B3F212A218C000002A3AC /* FirebaseFirestoreSwift */,
+				595B3F232A218C000002A3AC /* FirebaseStorage */,
+				595B3F252A218C000002A3AC /* FirebaseAuth */,
+				595B3F272A218C000002A3AC /* FirebaseFirestore */,
+				595B3F292A218C000002A3AC /* FirebaseDatabase */,
+			);
 			productName = Gobang;
 			productReference = 595B3F082A2187C60002A3AC /* Gobang.app */;
 			productType = "com.apple.product-type.application";
@@ -112,6 +244,9 @@
 				Base,
 			);
 			mainGroup = 595B3EFF2A2187C60002A3AC;
+			packageReferences = (
+				595B3F1E2A218C000002A3AC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = 595B3F092A2187C60002A3AC /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -128,6 +263,7 @@
 			files = (
 				595B3F132A2187D20002A3AC /* Preview Assets.xcassets in Resources */,
 				595B3F102A2187D20002A3AC /* Assets.xcassets in Resources */,
+				595B3F1C2A21884F0002A3AC /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,8 +274,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				595B3F0E2A2187C60002A3AC /* ContentView.swift in Sources */,
+				595B3F492A2193F00002A3AC /* ShowViewModel.swift in Sources */,
+				595B3F5D2A21F5F60002A3AC /* EditPersonView.swift in Sources */,
+				595B3F2E2A218DB50002A3AC /* ViewController.swift in Sources */,
+				595B3F532A21DADB0002A3AC /* AddRoomView.swift in Sources */,
+				595B3F612A2218E50002A3AC /* GameControl.swift in Sources */,
+				595B3F672A22C9100002A3AC /* GameModel.swift in Sources */,
+				595B3F592A21EFFB0002A3AC /* extension.swift in Sources */,
+				595B3F642A2232410002A3AC /* WaitRoomView.swift in Sources */,
+				595B3F332A218E3E0002A3AC /* LobbyView.swift in Sources */,
+				595B3F452A2192B60002A3AC /* LogInSignUpView.swift in Sources */,
+				595B3F6F2A232C160002A3AC /* GridView.swift in Sources */,
+				595B3F4E2A21D03C0002A3AC /* AlertView.swift in Sources */,
+				595B3F3B2A218F2E0002A3AC /* UserRoom.swift in Sources */,
 				595B3F0C2A2187C60002A3AC /* GobangApp.swift in Sources */,
+				595B3F412A21926D0002A3AC /* ProfileView.swift in Sources */,
+				595B3F6B2A22F5220002A3AC /* GameView.swift in Sources */,
+				595B3F3E2A2191700002A3AC /* StateControl.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -326,6 +477,50 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		595B3F1E2A218C000002A3AC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		595B3F1F2A218C000002A3AC /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 595B3F1E2A218C000002A3AC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		595B3F212A218C000002A3AC /* FirebaseFirestoreSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 595B3F1E2A218C000002A3AC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestoreSwift;
+		};
+		595B3F232A218C000002A3AC /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 595B3F1E2A218C000002A3AC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
+		};
+		595B3F252A218C000002A3AC /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 595B3F1E2A218C000002A3AC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		595B3F272A218C000002A3AC /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 595B3F1E2A218C000002A3AC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		595B3F292A218C000002A3AC /* FirebaseDatabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 595B3F1E2A218C000002A3AC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabase;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 595B3F002A2187C60002A3AC /* Project object */;
 }
