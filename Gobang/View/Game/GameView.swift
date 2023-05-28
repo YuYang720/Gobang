@@ -27,47 +27,56 @@ struct GameView: View {
                         Button {
                             Buttonup()
                         } label: {
-                            Image(systemName: "arrowtraingle.up.fill")
-                                .foregroundColor(Color.blue)
+                            Image("up")
+                                .resizable()
                                 .scaledToFit()
+                                .frame(width: 80, height: 80, alignment: .center)
                                 .border(Color.black, width: 1)
                         }
                         HStack{
                             //左
-                            Button(action: {
+                            Button {
                                 Buttonleft()
-                            }, label: {
+                            } label: {
                                 Image("left")
                                     .resizable()
                                     .scaledToFit()
                                     .frame(width: 80, height: 80, alignment: .center)
                                     .border(Color.black, width: 1)
-                            })
+                            }
                             Spacer()
                             //右
-                            Button(action: {
+                            Button {
                                 Buttonright()
-                            }, label: {
+                            } label: {
                                 Image("right")
                                     .resizable()
                                     .scaledToFit()
                                     .frame(width: 80, height: 80, alignment: .center)
                                     .border(Color.black, width: 1)
-                            })
+                            }
                         }
                         //下
-                        Button(action: {
+                        Button {
                             Buttondown()
-                        }, label: {
+                        } label: {
                             Image("down")
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 80, height: 80, alignment: .center)
                                 .border(Color.black, width: 1)
-                        })
+                        }
+                    }
+                    
+                    Button {
+                        confirmBtn()
+                    } label: {
+                        Image("confirm")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 100, height: 100, alignment: .center)
                     }
                 }
-                
             }
         }
     }
@@ -258,7 +267,9 @@ struct GameView: View {
         }
     }
     
-    
+    func confirmBtn() {
+        
+    }
 }
 
 struct GameView_Previews: PreviewProvider {
