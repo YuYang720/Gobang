@@ -10,7 +10,7 @@ import AVFoundation
 
 class GameControl: StateControl, ObservableObject {
     @Published var room: Room = Room()
-    @Published var game: Game = Game(flag:0, winner: -1)
+    @Published var game: Game = Game(flag:0, winner: -1, interface: 0) 
     @Published var enterCode = ""
     @Published var playerIdx = 0
     var playerID = ""
@@ -106,6 +106,37 @@ class GameControl: StateControl, ObservableObject {
         return resultDictionary
     }
     
+    func chessboardToDictionary() -> [Dictionary<String, Any>] {
+        var resultDictionary: [Dictionary<String, Any>] = []
+        for chessboard in self.game.chessboard {
+            resultDictionary.append(chessboard.dictionary)
+        }
+        return resultDictionary
+    }
+    
+    func updatePlayers(id: String, playersDictionary: [Dictionary<String, Any>]) {
+        db.collection("games").document(id).updateData([
+            "players": playersDictionary
+        ]) { err in
+            if let err = err {
+                print("Error updating document: \(err)")
+            } else {
+                print("Document successfully updated")
+            }
+        }
+    }
+    
+    func updateRecords(id: String, recordsToDictionary: [Dictionary<String, Any>]) {
+        db.collection("users").document(id).updateData([
+            "records": recordsToDictionary
+        ]) { err in
+            if let err = err {
+                print("Error updating document: \(err)")
+            } else {
+                print("Document successfully updated")
+            }
+        }
+    }
     
 }
 

@@ -82,12 +82,12 @@ struct AddRoomView: View {
     var UserInfoView: some View {
         RoundedRectangle(cornerRadius: 15)
             .foregroundColor(Color.black)
-            .frame(width: showView.width * 0.3, height: showView.height * 0.05)
+            .frame(width: showView.width * 0.4, height: showView.height * 0.05)
             .overlay(
                 Text(showView.user.nickname)
                     .font(.title)
                     .foregroundColor(.white)
-                    .frame(width: showView.width * 0.2, height: showView.height * 0.03, alignment: .leading)
+                    .frame(width: showView.width * 0.3, height: showView.height * 0.03, alignment: .leading)
                     .padding(.leading, 5)
                 
             )

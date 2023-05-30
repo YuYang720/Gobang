@@ -8,8 +8,26 @@
 import SwiftUI
 
 struct ProfileView: View {
+    @EnvironmentObject var showView: ShowViewModel
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack{
+            Text(showView.user.nickname)
+                .font(.largeTitle)
+                .foregroundColor(.white)
+                .frame(width: showView.width * 0.3, height: showView.height * 0.1, alignment: .leading)
+                .background(Color.black)
+                .cornerRadius(5)
+                /*.overlay(
+                    Button(action: {
+                        editor = .nickname
+                        showEditView = true
+                    }, label: {
+                        Image("pencil2")
+                            .resizable()
+                            .frame(width: 35, height: 35, alignment: .trailing)
+                    }).offset(x: showView.width * 0.12)
+                )*/
+        }
     }
 }
 

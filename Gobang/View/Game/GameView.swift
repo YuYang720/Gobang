@@ -12,13 +12,12 @@ struct GameView: View {
     @EnvironmentObject var showView: ShowViewModel
     @EnvironmentObject var roomAction: GameControl
     //@State private var currRoomData = Game(flag: 0, winner: -1, chessboard: boards)
-    @State private var UIColor = Color(red: 238/255, green: 186/255, blue: 85/255)
-    @State private var Currentselected: Int = 0
+    @State var UIColor = Color(red: 119/255, green: 93/255, blue: 43/255)
     
     var body: some View {
         ZStack{
             VStack {
-                Text("\(roomAction.game.players[roomAction.playerIdx].nickname) vs    \(roomAction.game.players[roomAction.playerIdx].nickname)")
+                Text("\(roomAction.game.players[roomAction.playerIdx].nickname) vs    \(roomAction.game.players[1-roomAction.playerIdx].nickname)")
                     .font(.largeTitle)
                 boardView
                 HStack{
@@ -31,7 +30,6 @@ struct GameView: View {
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 80, height: 80, alignment: .center)
-                                .border(Color.black, width: 1)
                         }
                         HStack{
                             //左
@@ -42,7 +40,6 @@ struct GameView: View {
                                     .resizable()
                                     .scaledToFit()
                                     .frame(width: 80, height: 80, alignment: .center)
-                                    .border(Color.black, width: 1)
                             }
                             Spacer()
                             //右
@@ -53,7 +50,6 @@ struct GameView: View {
                                     .resizable()
                                     .scaledToFit()
                                     .frame(width: 80, height: 80, alignment: .center)
-                                    .border(Color.black, width: 1)
                             }
                         }
                         //下
@@ -64,7 +60,6 @@ struct GameView: View {
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 80, height: 80, alignment: .center)
-                                .border(Color.black, width: 1)
                         }
                     }
                     
@@ -79,34 +74,17 @@ struct GameView: View {
                 }
             }
         }
+        .onAppear() {
+            roomAction.gameDetect(id: roomAction.room.GameID) { game in
+                roomAction.game = game
+            }
+        }
     }
     
     var boardView: some View {
         VStack{
-            HStack{
-                ForEach(0..<10) { number in
-                    VStack {
-                        ZStack {
-                            Image("\(number)")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 25, height: 25, alignment: .center)
-                        }
-                        .frame(width: 30, height: 30, alignment: .center)
-                    }
-                }
-            }
             ForEach(0..<9) { row in
                     HStack {
-                        VStack {
-                            ZStack {
-                                Image("\(row + 1)")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 25, height: 25, alignment: .center)
-                            }
-                            .frame(width: 30, height: 30, alignment: .center)
-                        }
                         Group {
                             ForEach(0..<9) { column in
                                 VStack{
@@ -114,21 +92,19 @@ struct GameView: View {
                                         Image(roomAction.game.chessboard[row*9+column].data)
                                             .resizable()
                                             .scaledToFit()
-                                            .frame(width: 25, height: 25, alignment: .center)
+                                            .frame(width: 27, height: 27, alignment: .center)
                                     }
-                                    .frame(width: 30, height: 30, alignment: .center)
-                                    .border(Color.black, width: 2)
+                                    .frame(width: 32, height: 32, alignment: .center)
+                                    .border(((roomAction.game.players[roomAction.playerIdx].currentSelect == row*9+column) ? Color.red : .black), width: 3)
                                 }
                                 .background(UIColor)
-                                .onAppear(){
-                                    ///
-                                }
                             }
                         }
                     }
-                }.background(UIColor)
-        }
+            }
+        }.background(UIColor)
     }
+    
     
     func checkisblank(xy: Int) -> Bool {
         if roomAction.game.chessboard[xy].data == "none"{
@@ -136,6 +112,7 @@ struct GameView: View {
         }
         else { //黑或白
             showView.alert_msg = "已經有棋子了，請改位置"
+            showView.show_message(message: showView.alert_msg)
             return false
         }
     }
@@ -161,6 +138,7 @@ struct GameView: View {
         }
         if Connect >= 5{
             roomAction.game.winner = flag
+            roomAction.game.players[flag].winning = true
             roomAction.game.isGameOver = true
         }
     }
@@ -185,6 +163,7 @@ struct GameView: View {
         }
         if Connect >= 5{
             roomAction.game.winner = flag
+            roomAction.game.players[flag].winning = true
             roomAction.game.isGameOver = true
         }
     }
@@ -208,6 +187,7 @@ struct GameView: View {
         }
         if Connect >= 5{
             roomAction.game.winner = flag
+            roomAction.game.players[flag].winning = true
             roomAction.game.isGameOver = true
         }
     }
@@ -231,6 +211,7 @@ struct GameView: View {
         }
         if Connect >= 5{
             roomAction.game.winner = flag
+            roomAction.game.players[flag].winning = true
             roomAction.game.isGameOver = true
         }
     }
@@ -247,28 +228,62 @@ struct GameView: View {
     }
     
     func Buttonup() ->  Void{
-        if Currentselected >= 9 {
-            Currentselected -= 9
+        if roomAction.game.players[roomAction.playerIdx].currentSelect >= 9 {
+            roomAction.game.players[roomAction.playerIdx].currentSelect -= 9
+            roomAction.updatePlayers(id: roomAction.room.GameID, playersDictionary: roomAction.playersToDictionary())
         }
     }
     func Buttondown() ->  Void{
-        if Currentselected <= 71 {
-            Currentselected += 9
+        if roomAction.game.players[roomAction.playerIdx].currentSelect <= 71 {
+            roomAction.game.players[roomAction.playerIdx].currentSelect += 9
+            roomAction.updatePlayers(id: roomAction.room.GameID, playersDictionary: roomAction.playersToDictionary())
         }
     }
     func Buttonleft() ->  Void{
-        if Currentselected%9 != 0 {
-            Currentselected -= 1
+        if roomAction.game.players[roomAction.playerIdx].currentSelect % 9 != 0 {
+            roomAction.game.players[roomAction.playerIdx].currentSelect -= 1
+            roomAction.updatePlayers(id: roomAction.room.GameID, playersDictionary: roomAction.playersToDictionary())
         }
     }
     func Buttonright() ->  Void{
-        if Currentselected%9 != 8 {
-            Currentselected += 1
+        if roomAction.game.players[roomAction.playerIdx].currentSelect % 9 != 8 {
+            roomAction.game.players[roomAction.playerIdx].currentSelect += 1
+            roomAction.updatePlayers(id: roomAction.room.GameID, playersDictionary: roomAction.playersToDictionary())
         }
     }
     
     func confirmBtn() {
+        let xy = roomAction.game.players[roomAction.playerIdx].currentSelect
         
+        
+        
+        if ((roomAction.room.users[roomAction.playerIdx].isHost) && (roomAction.game.flag == 1)) {
+            showView.alert_msg = "\(roomAction.playerIdx)還沒輪到你\(roomAction.game.flag)"
+            showView.show_message(message: showView.alert_msg)
+        }
+        
+        else if ((roomAction.room.users[roomAction.playerIdx].isHost == false) && (roomAction.game.flag == 0)) {
+            showView.alert_msg = "\(roomAction.playerIdx)還沒輪到你\(roomAction.game.flag)"
+            showView.show_message(message: showView.alert_msg)
+        }
+        
+        else if ((roomAction.room.users[roomAction.playerIdx].isHost) && (roomAction.game.flag == 0)) {
+            if checkisblank(xy: xy) {
+                roomAction.game.chessboard[xy].data = "black"
+                checkWin(xy: xy, flag: 0, suit: "black")
+                roomAction.game.flag = 1
+            }
+        }
+        else if ((roomAction.room.users[roomAction.playerIdx].isHost == false) && (roomAction.game.flag == 1)) {
+            if checkisblank(xy: xy) {
+                roomAction.game.chessboard[xy].data = "white"
+                checkWin(xy: xy, flag: 1, suit: "white")
+                roomAction.game.flag = 0
+            }
+        }
+        
+        //roomAction.game.chessboard[xy].data = "black"
+        roomAction.updateChessboard(id: roomAction.room.GameID, chessboardDictionary: roomAction.chessboardToDictionary())
     }
 }
 

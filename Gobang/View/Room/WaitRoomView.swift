@@ -103,7 +103,7 @@ struct  RoomUserView: View {
         VStack(spacing: 5){
             ZStack{
                 VStack(spacing: 0){
-                    HStack{
+                    VStack{
                         if index < roomAction.room.users.count {
                             Image(systemName: "person")
                                 .resizable()
@@ -115,8 +115,8 @@ struct  RoomUserView: View {
                                 .foregroundColor(.black)
                             Spacer()
                         }
-                    }.frame(width: showView.width * 0.2, height: showView.width * 0.05)
-                    
+                    }.frame(width: showView.width * 0.3, height: showView.width * 0.3)
+                    //Spacer()
                     if index < roomAction.room.users.count {
                         ZStack{
                             Text(roomAction.room.users[index].isHost ? "室      長": "準      備")

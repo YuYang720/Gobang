@@ -205,9 +205,9 @@ class StateControl {
         }
     }
     
-    func updateGame(id: String, playersDictionary: [Dictionary<String, Any>]) {
+    func updateChessboard(id: String, chessboardDictionary: [Dictionary<String, Any>]) {
         db.collection("games").document(id).updateData([
-            "players": playersDictionary,
+            "chessboard": chessboardDictionary
         ]) { err in
             if let err = err {
                 print("Error updating document: \(err)")
@@ -217,9 +217,9 @@ class StateControl {
         }
     }
     
-    func updatePlayers(id: String, playersDictionary: [Dictionary<String, Any>]) {
+    func updateGame(id: String, chessboard: [Chessboard]) {
         db.collection("games").document(id).updateData([
-            "players": playersDictionary
+            "chessboard": chessboard,
         ]) { err in
             if let err = err {
                 print("Error updating document: \(err)")
@@ -229,15 +229,5 @@ class StateControl {
         }
     }
     
-    func updateRecords(id: String, recordsToDictionary: [Dictionary<String, Any>]) {
-        db.collection("users").document(id).updateData([
-            "records": recordsToDictionary
-        ]) { err in
-            if let err = err {
-                print("Error updating document: \(err)")
-            } else {
-                print("Document successfully updated")
-            }
-        }
-    }
+
 }
