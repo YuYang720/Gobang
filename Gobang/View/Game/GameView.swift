@@ -256,25 +256,25 @@ struct GameView: View {
         let xy = roomAction.game.players[roomAction.playerIdx].currentSelect
         
         
-        
-        if ((roomAction.room.users[roomAction.playerIdx].isHost) && (roomAction.game.flag == 1)) {
+        //roomAction.room.user[roomAction.playerIdx].....
+        if ((roomAction.game.players[roomAction.playerIdx].id == 0) && (roomAction.game.flag == 1)) {
             showView.alert_msg = "\(roomAction.playerIdx)還沒輪到你\(roomAction.game.flag)"
             showView.show_message(message: showView.alert_msg)
         }
         
-        else if ((roomAction.room.users[roomAction.playerIdx].isHost == false) && (roomAction.game.flag == 0)) {
+        else if ((roomAction.game.players[roomAction.playerIdx].id == 1) && (roomAction.game.flag == 0)) {
             showView.alert_msg = "\(roomAction.playerIdx)還沒輪到你\(roomAction.game.flag)"
             showView.show_message(message: showView.alert_msg)
         }
         
-        else if ((roomAction.room.users[roomAction.playerIdx].isHost) && (roomAction.game.flag == 0)) {
+        else if ((roomAction.game.players[roomAction.playerIdx].id == 0) && (roomAction.game.flag == 0)) {
             if checkisblank(xy: xy) {
                 roomAction.game.chessboard[xy].data = "black"
                 checkWin(xy: xy, flag: 0, suit: "black")
                 roomAction.game.flag = 1
             }
         }
-        else if ((roomAction.room.users[roomAction.playerIdx].isHost == false) && (roomAction.game.flag == 1)) {
+        else if ((roomAction.game.players[roomAction.playerIdx].id == 1) && (roomAction.game.flag == 1)) {
             if checkisblank(xy: xy) {
                 roomAction.game.chessboard[xy].data = "white"
                 checkWin(xy: xy, flag: 1, suit: "white")
