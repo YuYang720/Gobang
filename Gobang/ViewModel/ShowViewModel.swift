@@ -57,6 +57,14 @@ class ShowViewModel: StateControl, ObservableObject {
         view = "LobbyView"
     }
     
+    func recordsToDictionary() -> [Dictionary<String, Any>] {
+        var resultDictionary: [Dictionary<String, Any>] = []
+        for record in self.user.records {
+            resultDictionary.append(record.dictionary)
+        }
+        return resultDictionary
+    }
+    
 }
 
 

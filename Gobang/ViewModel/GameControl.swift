@@ -114,35 +114,13 @@ class GameControl: StateControl, ObservableObject {
         return resultDictionary
     }
     
-    func updatePlayers(id: String, playersDictionary: [Dictionary<String, Any>]) {
-        db.collection("games").document(id).updateData([
-            "players": playersDictionary
-        ]) { err in
-            if let err = err {
-                print("Error updating document: \(err)")
-            } else {
-                print("Document successfully updated")
-            }
-        }
-    }
     
-    func updateRecords(id: String, recordsToDictionary: [Dictionary<String, Any>]) {
-        db.collection("users").document(id).updateData([
-            "records": recordsToDictionary
-        ]) { err in
-            if let err = err {
-                print("Error updating document: \(err)")
-            } else {
-                print("Document successfully updated")
-            }
-        }
-    }
     
 }
 
 enum StartGameSituation: String {
-    case notAllReady = "有玩家尚未準備"
-    case underRepresented = "遊玩人數需2人"
-    case gameStart = "遊戲即將開始"
+    case notAllReady = "玩家未準備"
+    case underRepresented = "需2人才可開始遊戲"
+    case gameStart = "遊戲開始"
     
 }

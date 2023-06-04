@@ -12,14 +12,24 @@ struct AddRoomView: View {
     
     @EnvironmentObject var showView: ShowViewModel
     @EnvironmentObject var roomAction: GameControl
+    @State var UIColor = Color(red: 238/255, green: 186/255, blue: 83/255)
     
     var body: some View {
-        Color.init(red: 89/255, green: 165/255, blue: 216/255).edgesIgnoringSafeArea(.all)
+        
+        Image("Board_img3")
+            .resizable()
+            .edgesIgnoringSafeArea(.all)
+        
+        UserInfoView
         
         VStack {
-            UserInfoView
             
-            HStack{
+            
+            ZStack{
+                Image("Background1")
+                    .resizable()
+                    .frame(width: showView.width * 0.4, height: showView.height * 0.05)
+                    .cornerRadius(10)
                 Button {
                     roomAction.createRoomBtn(user: showView.user){
                         showView.view = "WaitRoomView"
@@ -27,26 +37,21 @@ struct AddRoomView: View {
                 } label: {
                     Text("創建房間")
                         .font(.largeTitle)
-                        .foregroundColor(.black)
-                        .frame(width: showView.width * 0.4, height: showView.height * 0.05)
-                        .background(Color.init(red: 239/255, green: 239/255, blue: 208/255))
-                        .cornerRadius(10)
+                        .foregroundColor(.yellow)
                 }
             }
-            .frame(width: showView.width * 0.7, height: showView.height * 0.1)
-            .background(Color.init(red: 26/255, green: 101/255, blue: 158/255))
-            .cornerRadius(15)
             .padding()
+            .position(x: showView.width * 0.5, y: showView.height * 0.3)
             
             VStack{
-                Text("輸入邀請碼")
+                Text("輸入房號")
                     .font(.largeTitle)
-                    .foregroundColor(.orange)
+                    .foregroundColor(Color.init(red:238/255, green: 186/255, blue: 83/255))
                 
                 TextField("", text: $roomAction.enterCode)
                     .font(.title)
                     .foregroundColor(.black)
-                    .frame(width: showView.width * 0.6, height: showView.height * 0.05, alignment: .center)
+                    .frame(width: showView.width * 0.4, height: showView.height * 0.05, alignment: .center)
                     .background(Color.white)
                     .cornerRadius(5)
                 
@@ -65,15 +70,21 @@ struct AddRoomView: View {
                     Text("加入房間")
                         .font(.largeTitle)
                         .foregroundColor(.black)
-                        .frame(width: showView.width * 0.5, height: showView.height * 0.05)
-                        .background(Color.init(red: 239/255, green: 239/255, blue: 208/255))
+                        .frame(width: showView.width * 0.4, height: showView.height * 0.05)
+                        .background(Color.init(red:238/255, green: 186/255, blue: 83/255))
                         .cornerRadius(10)
                 }
             }
+            //.position(x: showView.width * 0.5, y: showView.height * 0.6)
             .frame(width: showView.width * 0.7, height: showView.height * 0.2)
-            .background(Color.init(red: 26/255, green: 101/255, blue: 158/255))
-            .cornerRadius(15)
-            .padding()
+            .background(
+                Image("Background1")
+                    .cornerRadius(15)
+                    .padding()
+            )
+            .offset(x: 0, y: -showView.height * 0.2)
+            //.position(x: showView.width * 0.5, y: showView.height * 0.6)
+            //.padding()
         }
         
 
@@ -91,7 +102,7 @@ struct AddRoomView: View {
                     .padding(.leading, 5)
                 
             )
-            .offset(x: -showView.width * 0.3, y: -showView.height * 0.2)
+            .offset(x: -showView.width * 0.3)
             .onTapGesture {
                 showView.view = "ProfileView"
             }

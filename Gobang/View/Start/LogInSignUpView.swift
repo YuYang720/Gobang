@@ -21,8 +21,9 @@ struct LogInSignUpView: View {
     
     var body: some View {
         ZStack {
-            Color.blue
-                .edgesIgnoringSafeArea(.all)
+            Image("Background6")
+                .resizable()
+                .ignoresSafeArea()
             
             /*LogInView
                 .position(x: UIScreen.main.bounds.width * 0.49, y: UIScreen.main.bounds.height * 0.55)
@@ -83,7 +84,7 @@ struct LogInSignUpView: View {
             
             HStack{
                 Image(systemName: "envelope")
-                    .foregroundColor(Color.white)
+                    .foregroundColor(Color.orange)
                     .font(.title)
                     .background(RoundedRectangle(cornerRadius: 0)
                                     .stroke(Color.orange, lineWidth: 3)
@@ -100,7 +101,7 @@ struct LogInSignUpView: View {
             
             HStack{
                 Image(systemName: "lock")
-                    .foregroundColor(Color.white)
+                    .foregroundColor(Color.orange)
                     .font(.title)
                     .background(RoundedRectangle(cornerRadius: 0)
                                     .stroke(Color.orange, lineWidth: 3)
@@ -185,7 +186,7 @@ struct LogInSignUpView: View {
                 .padding(5)
             HStack{
                 Image(systemName: "person")
-                    .foregroundColor(Color.white)
+                    .foregroundColor(Color.orange)
                     .font(.title)
                     .background(RoundedRectangle(cornerRadius: 0)
                                     .stroke(Color.orange, lineWidth: 3)
@@ -201,7 +202,7 @@ struct LogInSignUpView: View {
             }
             HStack{
                 Image(systemName: "envelope")
-                    .foregroundColor(Color.white)
+                    .foregroundColor(Color.orange)
                     .font(.title)
                     .background(RoundedRectangle(cornerRadius: 0)
                                     .stroke(Color.orange, lineWidth: 3)
@@ -218,7 +219,7 @@ struct LogInSignUpView: View {
             
             HStack{
                 Image(systemName: "lock")
-                    .foregroundColor(Color.white)
+                    .foregroundColor(Color.orange)
                     .font(.title)
                     .background(RoundedRectangle(cornerRadius: 0)
                                     .stroke(Color.orange, lineWidth: 3)

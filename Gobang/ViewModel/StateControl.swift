@@ -217,9 +217,36 @@ class StateControl {
         }
     }
     
-    func updateGame(id: String, chessboard: [Chessboard]) {
+    func updatePlayers(id: String, playersDictionary: [Dictionary<String, Any>]) {
         db.collection("games").document(id).updateData([
-            "chessboard": chessboard,
+            "players": playersDictionary
+        ]) { err in
+            if let err = err {
+                print("Error updating document: \(err)")
+            } else {
+                print("Document successfully updated")
+            }
+        }
+    }
+    
+    func updateRecords(id: String, recordsToDictionary: [Dictionary<String, Any>]) {
+        db.collection("users").document(id).updateData([
+            "records": recordsToDictionary
+        ]) { err in
+            if let err = err {
+                print("Error updating document: \(err)")
+            } else {
+                print("Document successfully updated")
+            }
+        }
+    }
+    
+    func updateGame(id: String, flag: Int, isGameOver: Bool, chessboardDictionary: [Dictionary<String, Any>], playersDictionary: [Dictionary<String, Any>]) {
+        db.collection("games").document(id).updateData([
+            "chessboard": chessboardDictionary,
+            "players": playersDictionary,
+            "flag": flag,
+            "isGameOver": isGameOver
         ]) { err in
             if let err = err {
                 print("Error updating document: \(err)")

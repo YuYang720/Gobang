@@ -12,12 +12,18 @@ struct GameView: View {
     @EnvironmentObject var showView: ShowViewModel
     @EnvironmentObject var roomAction: GameControl
     //@State private var currRoomData = Game(flag: 0, winner: -1, chessboard: boards)
-    @State var UIColor = Color(red: 119/255, green: 93/255, blue: 43/255)
+    @State var UIColor = Color(red: 250/255, green: 216/255, blue: 100/255)
+    @State private var isGameOver = false
+    
+    let gameOverNotificaiton = NotificationCenter.default.publisher(for: Notification.Name("Game Over"))
     
     var body: some View {
         ZStack{
+            Image("Background6")
+                .resizable()
+                .ignoresSafeArea()
             VStack {
-                Text("\(roomAction.game.players[roomAction.playerIdx].nickname) vs    \(roomAction.game.players[1-roomAction.playerIdx].nickname)")
+                Text("\(roomAction.room.users[roomAction.playerIdx].nickname) vs    \(roomAction.room.users[1-roomAction.playerIdx].nickname)")
                     .font(.largeTitle)
                 boardView
                 HStack{
@@ -41,7 +47,6 @@ struct GameView: View {
                                     .scaledToFit()
                                     .frame(width: 80, height: 80, alignment: .center)
                             }
-                            Spacer()
                             //右
                             Button {
                                 Buttonright()
@@ -71,14 +76,34 @@ struct GameView: View {
                             .scaledToFit()
                             .frame(width: 100, height: 100, alignment: .center)
                     }
+                    
                 }
+            }
+            if isGameOver {
+                GameOverView
+                //print("gameover")
             }
         }
         .onAppear() {
             roomAction.gameDetect(id: roomAction.room.GameID) { game in
                 roomAction.game = game
+                if game.isGameOver {
+                    NotificationCenter.default.post(name: Notification.Name("Game Over"), object: nil)
+                }
             }
+            //roomAction.game.isGameOver == true 判斷會失敗
         }
+        .onReceive(gameOverNotificaiton, perform: { _ in
+            print("Game Over")
+            self.isGameOver = true
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3 ) {
+                showView.view = "AddRoomView"
+                if roomAction.room.users[roomAction.playerIdx].isHost {
+                    roomAction.deleteGame(id: roomAction.room.GameID)
+                    roomAction.deleteRoom(id: roomAction.room.id!)
+                }
+            }
+        })
     }
     
     var boardView: some View {
@@ -94,17 +119,56 @@ struct GameView: View {
                                             .scaledToFit()
                                             .frame(width: 27, height: 27, alignment: .center)
                                     }
-                                    .frame(width: 32, height: 32, alignment: .center)
+                                    .frame(width: 34, height: 34, alignment: .center)
                                     .border(((roomAction.game.players[roomAction.playerIdx].currentSelect == row*9+column) ? Color.red : .black), width: 3)
                                 }
-                                .background(UIColor)
                             }
                         }
                     }
             }
-        }.background(UIColor)
+        }
     }
     
+    var GameOverView: some View {
+        ZStack{
+            Color.init(red: 142/255, green: 202/255, blue: 230/255)
+            if roomAction.game.players[roomAction.playerIdx].winning {
+                Text("勝    利")
+                    .font(Font.system(size: 70))
+                    .foregroundColor(.yellow)
+                    .onAppear{
+                        //AVPlayer.winPlayer.playFromStart()
+                    }
+            }else {
+                Text("失    敗")
+                    .font(Font.system(size: 70))
+                    .foregroundColor(.black)
+                    .onAppear{
+                        //AVPlayer.losePlayer.playFromStart()
+                    }
+            }
+        }
+        .frame(width: showView.width * 0.7, height: showView.height * 0.2)
+        .cornerRadius(20)
+        .overlay(RoundedRectangle(cornerRadius: 20)
+                    .stroke(Color.init(red: 2/255, green: 48/255, blue: 71/255), lineWidth: 8))
+        .onAppear{
+            var result = ""
+            var score = 1
+            if roomAction.game.players[roomAction.playerIdx].winning {
+                result = "win"
+                score = 4
+            }
+            else {
+                result = "lose"
+                score = 1
+            }
+            //showView.user.records.total_score += score
+            
+            showView.user.records.append(MyRecord(id: showView.user.records.count, result: result, score: score, total_score: 0))
+            showView.updateRecords(id: showView.user.id!, recordsToDictionary: showView.recordsToDictionary())
+        }
+    }
     
     func checkisblank(xy: Int) -> Bool {
         if roomAction.game.chessboard[xy].data == "none"{
@@ -283,7 +347,7 @@ struct GameView: View {
         }
         
         //roomAction.game.chessboard[xy].data = "black"
-        roomAction.updateChessboard(id: roomAction.room.GameID, chessboardDictionary: roomAction.chessboardToDictionary())
+        roomAction.updateGame(id: roomAction.room.GameID, flag: roomAction.game.flag, isGameOver: roomAction.game.isGameOver, chessboardDictionary: roomAction.chessboardToDictionary(), playersDictionary: roomAction.playersToDictionary())
     }
 }
 

@@ -21,8 +21,10 @@ struct WaitRoomView: View {
     
     var body: some View {
         ZStack {
-            Color.init(red: 89/255, green: 165/255, blue: 216/255).edgesIgnoringSafeArea(.all)
-            Text("邀請碼: \(roomAction.room.invitationCode)")
+            Image("Board_img3")
+                .resizable()
+                .edgesIgnoringSafeArea(.all)
+            Text("房號: \(roomAction.room.invitationCode)")
                 .font(.title)
                 .position(x: showView.width * 0.7, y: showView.height * 0.1)
                 .foregroundColor(.black)
@@ -44,7 +46,7 @@ struct WaitRoomView: View {
                     .frame(width: showView.width * 0.4, height: showView.height * 0.05)
                     .foregroundColor(.yellow)
                     .overlay(
-                        Text(roomAction.room.users[roomAction.playerIdx].isHost ? "開 始 遊 戲" : roomAction.room.users[roomAction.playerIdx].isReady ? "取消準備" : "準    備")
+                        Text(roomAction.room.users[roomAction.playerIdx].isHost ? "進 入 遊 戲" : roomAction.room.users[roomAction.playerIdx].isReady ? "取消準備" : "準    備")
                             .foregroundColor(.black)
                             .font(.title)
                     )
@@ -56,7 +58,6 @@ struct WaitRoomView: View {
                 }
             }
             .frame(width: showView.width * 1, height: showView.height * 0.7)
-            .background(Color.init(red: 56/255, green: 111/255, blue: 164/255))
             .position(x: showView.width * 0.5, y: showView.height * 0.5)
         }.edgesIgnoringSafeArea(.all)
         .onAppear{
@@ -86,8 +87,8 @@ struct WaitRoomView: View {
             print("Start")
             print(roomAction.room.GameID)
             roomAction.roomListener!.remove()
-            showView.show_message(message: "遊戲即將開始")
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2){
+            showView.show_message(message: "遊戲開始")
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5){
                 showView.view = "GameView"
             }
         })
@@ -119,7 +120,7 @@ struct  RoomUserView: View {
                     //Spacer()
                     if index < roomAction.room.users.count {
                         ZStack{
-                            Text(roomAction.room.users[index].isHost ? "室      長": "準      備")
+                            Text(roomAction.room.users[index].isHost ? "房      長": "準      備")
                                 .foregroundColor(roomAction.room.users[index].isReady ? .black : .white)
                         }
                         .frame(width: showView.width * 0.4, height: showView.height * 0.05)
@@ -136,7 +137,7 @@ struct  RoomUserView: View {
                     }
                 }
                 .frame(width: showView.width * 0.6, height: showView.width * 0.6)
-                .background(Color.init(red: 89/255, green: 165/255, blue: 216/255))
+                //.background(Color.init(red: 89/255, green: 165/255, blue: 216/255))
                 .cornerRadius(15)
             }
         }

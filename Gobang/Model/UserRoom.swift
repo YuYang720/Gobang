@@ -15,7 +15,10 @@ struct User: Codable, Identifiable {
     var nickname: String = ""
     var Account: String = ""
     var password: String = ""
-    var authId: String = ""
+    var authId: String  = ""
+    //var total_score: Int = 0
+    var records: [MyRecord] = []
+
 }
 
 struct UserInRoom: Codable, Identifiable {
@@ -54,7 +57,19 @@ struct Room: Codable, Identifiable {
     }
 }
 
-
+struct MyRecord: Identifiable, Codable {
+    var id: Int
+    var result: String
+    var score: Int
+    var total_score: Int
+    
+    var dictionary: [String: Any] {
+        return ["id": self.id,
+                "result": self.result,
+                "score": self.score,
+                "total_score": self.total_score]
+    }
+}
 
 
 /*

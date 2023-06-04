@@ -16,12 +16,13 @@ struct LobbyView: View {
     var body: some View {
         
         ZStack{
-            Color.yellow
+            Image("Board_img4")
+                .resizable()
                 .edgesIgnoringSafeArea(.all)
-            Text("Touch To Start")
+            Text("點任意處進入遊戲")
                 .foregroundColor(Color.black)
-                .font(Font.system(size:35))
-                .position(x: showView.width * 0.5, y: showView.height * 0.9)
+                .font(Font.system(size:30))
+                .position(x: showView.width * 0.5, y: showView.height * 0.95)
             Button {
                 showView.LogOut()
                 showView.user = User()
