@@ -12,12 +12,20 @@ import FirebaseFirestoreSwift
 
 struct User: Codable, Identifiable {
     @DocumentID var id: String?
-    var nickname: String = ""
-    var Account: String = ""
-    var password: String = ""
-    var authId: String  = ""
+    var nickname: String
+    var Account: String
+    var password: String
+    var authId: String
     //var total_score: Int = 0
-    var records: [MyRecord] = []
+    var records: [MyRecord]
+    
+    init() {
+        self.nickname = ""
+        self.Account = ""
+        self.password = ""
+        self.authId = ""
+        self.records = []
+    }
 
 }
 
@@ -61,7 +69,7 @@ struct MyRecord: Identifiable, Codable {
     var id: Int
     var result: String
     var score: Int
-    var total_score: Int
+    var total_score: Int = 0
     
     var dictionary: [String: Any] {
         return ["id": self.id,

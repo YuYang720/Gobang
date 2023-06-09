@@ -58,6 +58,7 @@
 		595B3F662A22C9100002A3AC /* GameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModel.swift; sourceTree = "<group>"; };
 		595B3F6A2A22F5220002A3AC /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		595B3F6E2A232C160002A3AC /* GridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridView.swift; sourceTree = "<group>"; };
+		5999BDEB2A332E13002B48D4 /* Pincllo-Demo.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pincllo-Demo.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +105,7 @@
 				595B3F572A21EFC40002A3AC /* Other */,
 				595B3F0F2A2187D20002A3AC /* Assets.xcassets */,
 				595B3F1B2A21884F0002A3AC /* GoogleService-Info.plist */,
+				5999BDEB2A332E13002B48D4 /* Pincllo-Demo.ttf */,
 				595B3F142A2187D20002A3AC /* Info.plist */,
 				595B3F112A2187D20002A3AC /* Preview Content */,
 			);

@@ -11,7 +11,7 @@ struct ProfileView: View {
     @EnvironmentObject var showView: ShowViewModel
     var body: some View {
         ZStack{
-            Text("姓名： \(showView.user.nickname)")
+            Text("暱稱： \(showView.user.nickname)")
                 .font(.largeTitle)
                 .foregroundColor(.white)
                 .frame(width: showView.width * 0.7, height: showView.height * 0.05, alignment: .leading)
@@ -26,7 +26,8 @@ struct ProfileView: View {
                 .background(Color.black)
                 .cornerRadius(5)
                 .position(x: showView.width * 0.5, y: showView.height * 0.25)*/
-            
+            RecordView
+                .position(x: showView.width * 0.5, y: showView.height * 0.45)
             
             Button(action: {
                 showView.view = "AddRoomView"
@@ -51,7 +52,7 @@ struct ProfileView: View {
                 Text("我的戰績")
                     .font(.title)
                     .foregroundColor(.black)
-                    .frame(width: showView.width * 0.8, height: showView.height * 0.1)
+                    .frame(width: showView.width * 0.8, height: showView.height * 0.08)
                 HStack{
                     Spacer()
                     Text("結果")
@@ -67,7 +68,7 @@ struct ProfileView: View {
                         .frame(width: showView.width * 0.2, height: showView.height * 0.05)
                     Spacer()
                 }
-                .frame(width: showView.width * 0.8, height: showView.height * 0.1)
+                .frame(width: showView.width * 0.8, height: showView.height * 0.05)
                 .background(Color.init(red: 38/255, green: 97/255, blue: 156/255))
                 ScrollView {
                     VStack{
@@ -101,23 +102,23 @@ struct RecordRowView: View {
                 Text("\(record.result)")
                     .foregroundColor(Color.init(red: 32/255, green: 32/255, blue: 32/255))
                     .bold()
-                    .frame(width: UIScreen.main.bounds.width * 0.2, height: UIScreen.main.bounds.height * 0.1)
+                    .frame(width: UIScreen.main.bounds.width * 0.2, height: UIScreen.main.bounds.height * 0.05)
                 Spacer()
                 Text("\(record.score)")
                     .foregroundColor(Color.init(red: 51/255, green: 53/255, blue: 51/255))
                     .bold()
-                    .frame(width: UIScreen.main.bounds.width * 0.2, height: UIScreen.main.bounds.height * 0.1)
+                    .frame(width: UIScreen.main.bounds.width * 0.2, height: UIScreen.main.bounds.height * 0.05)
                 Spacer()
                 Text("\(record.total_score)")
                     .foregroundColor(Color.init(red: 51/255, green: 53/255, blue: 51/255))
                     .bold()
-                    .frame(width: UIScreen.main.bounds.width * 0.2, height: UIScreen.main.bounds.height * 0.1)
+                    .frame(width: UIScreen.main.bounds.width * 0.2, height: UIScreen.main.bounds.height * 0.05)
                 Spacer()
             }.offset(y: 10)
             Rectangle()
-                .frame(width: UIScreen.main.bounds.width * 0.8, height: 2)
+                .frame(width: UIScreen.main.bounds.width * 0.8, height: 1)
                 .foregroundColor(Color.init(red: 38/255, green: 97/255, blue: 156/255))
-        }.frame(width: UIScreen.main.bounds.width * 0.8, height: UIScreen.main.bounds.height * 0.1)
+        }.frame(width: UIScreen.main.bounds.width * 0.8, height: UIScreen.main.bounds.height * 0.05)
         
     }
 }

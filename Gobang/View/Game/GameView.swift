@@ -14,6 +14,7 @@ struct GameView: View {
     //@State private var currRoomData = Game(flag: 0, winner: -1, chessboard: boards)
     @State var UIColor = Color(red: 250/255, green: 216/255, blue: 100/255)
     @State private var isGameOver = false
+    // @State private var cal_score = 0
     
     let gameOverNotificaiton = NotificationCenter.default.publisher(for: Notification.Name("Game Over"))
     
@@ -114,10 +115,12 @@ struct GameView: View {
                             ForEach(0..<9) { column in
                                 VStack{
                                     ZStack{
-                                        Image(roomAction.game.chessboard[row*9+column].data)
-                                            .resizable()
-                                            .scaledToFit()
-                                            .frame(width: 27, height: 27, alignment: .center)
+                                        if roomAction.game.chessboard[row*9+column].data != "none" {
+                                            Image(roomAction.game.chessboard[row*9+column].data)
+                                                .resizable()
+                                                .scaledToFit()
+                                                .frame(width: 27, height: 27, alignment: .center)
+                                        }
                                     }
                                     .frame(width: 34, height: 34, alignment: .center)
                                     .border(((roomAction.game.players[roomAction.playerIdx].currentSelect == row*9+column) ? Color.red : .black), width: 3)
@@ -163,7 +166,7 @@ struct GameView: View {
                 result = "lose"
                 score = 1
             }
-            //showView.user.records.total_score += score
+            //cal_score = showView.user.records[roomAction.playerIdx].total_score + score
             
             showView.user.records.append(MyRecord(id: showView.user.records.count, result: result, score: score, total_score: 0))
             showView.updateRecords(id: showView.user.id!, recordsToDictionary: showView.recordsToDictionary())

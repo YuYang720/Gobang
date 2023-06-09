@@ -5,6 +5,8 @@
 //  Created by User06 on 2023/5/27.
 //
 
+// Gobang1-4 已經因為更改程式碼而無法使用
+
 import SwiftUI
 import FirebaseAuth
 import AVFoundation
@@ -15,7 +17,7 @@ struct LogInSignUpView: View {
     @ObservedObject private var keyboard = KeyboardResponder()
     @State private var isRegister = false
     @State private var showLogin: Bool = false
-    @State private var mail = ""
+    @State private var email = ""
     @State private var password = ""
     @State private var nickname = ""
     
@@ -91,7 +93,7 @@ struct LogInSignUpView: View {
                                     .frame(width: 45, height: 45)
                     )
                 
-                TextField("Email@mail...", text: $mail)
+                TextField("Email@mail...", text: $email)
                     .foregroundColor(Color.purple)
                     .padding()
                     .frame(width: 220, height: 47)
@@ -132,7 +134,7 @@ struct LogInSignUpView: View {
                     
                     Text("LOG IN")
                         .foregroundColor(Color.white)
-                        .font((.custom("PinclloDemo", size: 35)))
+                        .font(Font.system(size: 35))
                     
                 }
                 .padding()
@@ -209,7 +211,7 @@ struct LogInSignUpView: View {
                                     .frame(width: 45, height: 45)
                     )
                 
-                TextField("Email@mail...", text: $mail)
+                TextField("Email@mail...", text: $email)
                     .foregroundColor(Color.purple)
                     .padding()
                     .frame(width: 220, height: 47)
@@ -259,7 +261,7 @@ struct LogInSignUpView: View {
     }
     
     func email_registered() {
-        Auth.auth().createUser(withEmail: self.mail, password: self.password) { result, error in
+        Auth.auth().createUser(withEmail: self.email, password: self.password) { result, error in
             guard let user = result?.user,
                   error == nil else {
                 print(error?.localizedDescription as Any)
@@ -278,12 +280,12 @@ struct LogInSignUpView: View {
     func setUser(uid: String) {
         showView.user.authId = uid
         showView.user.nickname = nickname
-        showView.user.Account = mail
+        showView.user.Account = email
         showView.user.password = password
     }
     
     func email_login() {
-        if mail == "" {
+        if email == "" {
             showView.alert_msg = "請輸入電子信箱"
             showView.show_message(message: showView.alert_msg)
         }
@@ -292,7 +294,7 @@ struct LogInSignUpView: View {
             showView.show_message(message: showView.alert_msg)
         }
         else {
-            Auth.auth().signIn(withEmail: mail, password: password) { result, error in
+            Auth.auth().signIn(withEmail: email, password: password) { result, error in
                 guard error == nil else {
                     print(error!.localizedDescription as String)
                     errorAnalysis(error: error!.localizedDescription)

@@ -1,4 +1,4 @@
-//
+// 因為程式碼過長，我會分批給你
 //  StateControl.swift
 //  Gobang
 //
