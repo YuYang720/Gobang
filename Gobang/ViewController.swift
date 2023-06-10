@@ -36,10 +36,6 @@ struct ViewController: View {
                 GameView()
                     .environmentObject(showView)
                     .environmentObject(roomAction)
-//            case "GridView":
-//                GridView()
-//                    .environmentObject(showView)
-//                    .environmentObject(roomAction)
             default:
                 LobbyView()
                     .environmentObject(showView)

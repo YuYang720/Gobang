@@ -1,4 +1,4 @@
-// 因為程式碼過長，我會分批給你
+//
 //  StateControl.swift
 //  Gobang
 //
@@ -57,7 +57,7 @@ class StateControl {
             }
             
         }
-    }
+    }//particular user
     
     func createUser(user: User, completion: @escaping (User) -> Void) {
         do {
@@ -229,18 +229,6 @@ class StateControl {
         }
     }
     
-    func updateRecords(id: String, recordsToDictionary: [Dictionary<String, Any>]) {
-        db.collection("users").document(id).updateData([
-            "records": recordsToDictionary
-        ]) { err in
-            if let err = err {
-                print("Error updating document: \(err)")
-            } else {
-                print("Document successfully updated")
-            }
-        }
-    }
-    
     func updateGame(id: String, flag: Int, isGameOver: Bool, chessboardDictionary: [Dictionary<String, Any>], playersDictionary: [Dictionary<String, Any>]) {
         db.collection("games").document(id).updateData([
             "chessboard": chessboardDictionary,
@@ -256,5 +244,41 @@ class StateControl {
         }
     }
     
+    func updateRecords(id: String, recordsToDictionary: [Dictionary<String, Any>]) {
+        db.collection("users").document(id).updateData([
+            "records": recordsToDictionary
+        ]) { err in
+            if let err = err {
+                print("Error updating document: \(err)")
+            } else {
+                print("Document successfully updated")
+            }
+        }
+    }
+    
+    func updateTotalScore(id: String, totalScore: Int) {
+        db.collection("users").document(id).updateData([
+            "total_score": totalScore
+        ]) { err in
+            if let err = err {
+                print("Error updating document: \(err)")
+            } else {
+                print("User total_score successfully updated")
+            }
+        }
+    }
+    
+    func fetchAllUsers(completion: @escaping ([User]) -> Void) {
+        db.collection("users").getDocuments { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                let users = querySnapshot!.documents.compactMap { document -> User? in
+                    return try? document.data(as: User.self)
+                }
+                completion(users)
+            }
+        }
+    } // All User------to leaderboard
 
 }

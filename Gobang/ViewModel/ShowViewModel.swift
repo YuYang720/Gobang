@@ -15,6 +15,7 @@ class ShowViewModel: StateControl, ObservableObject {
     @Published var alert_msg = ""
     @Published var alert_opacity = 0.0
     @Published var showSettingView: Bool = false
+    @Published var leaderboard: [User] = []
     
     var width: CGFloat
     var height: CGFloat
@@ -65,6 +66,7 @@ class ShowViewModel: StateControl, ObservableObject {
         }
         return resultDictionary
     }
+    
     
 }
 

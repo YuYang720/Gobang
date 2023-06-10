@@ -16,7 +16,7 @@ struct User: Codable, Identifiable {
     var Account: String
     var password: String
     var authId: String
-    //var total_score: Int = 0
+    var total_score: Int = 0
     var records: [MyRecord]
     
     init() {
@@ -79,19 +79,3 @@ struct MyRecord: Identifiable, Codable {
     }
 }
 
-
-/*
- struct UserInfo: Codable {
-     var birthday: Date = Date()
-     var constellation: String = ""
-     var gender: String = ""
-     var nickname: String = ""
-     
-     var dictionary: [String: Any] {
-         return ["birthday": self.birthday,
-                 "constellation": self.constellation,
-                 "gender": self.gender,
-                 "nickname": self.nickname]
-     }
- }
- */

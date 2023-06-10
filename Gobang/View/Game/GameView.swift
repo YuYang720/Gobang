@@ -24,7 +24,7 @@ struct GameView: View {
                 .resizable()
                 .ignoresSafeArea()
             VStack {
-                Text("\(roomAction.room.users[roomAction.playerIdx].nickname) vs    \(roomAction.room.users[1-roomAction.playerIdx].nickname)")
+                Text("\(roomAction.room.users[roomAction.playerIdx].nickname)  vs    \(roomAction.room.users[1-roomAction.playerIdx].nickname)")
                     .font(.largeTitle)
                 boardView
                 HStack{
@@ -37,6 +37,7 @@ struct GameView: View {
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 80, height: 80, alignment: .center)
+                                .offset(y: 20)
                         }
                         HStack{
                             //左
@@ -47,6 +48,7 @@ struct GameView: View {
                                     .resizable()
                                     .scaledToFit()
                                     .frame(width: 80, height: 80, alignment: .center)
+                                    .offset(x: -10)
                             }
                             //右
                             Button {
@@ -56,6 +58,7 @@ struct GameView: View {
                                     .resizable()
                                     .scaledToFit()
                                     .frame(width: 80, height: 80, alignment: .center)
+                                    .offset(x: 10)
                             }
                         }
                         //下
@@ -66,8 +69,12 @@ struct GameView: View {
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 80, height: 80, alignment: .center)
+                                .offset(y: -20)
                         }
                     }
+                    .offset(x: -15)
+                    .padding()
+                    
                     
                     Button {
                         confirmBtn()
@@ -76,6 +83,7 @@ struct GameView: View {
                             .resizable()
                             .scaledToFit()
                             .frame(width: 100, height: 100, alignment: .center)
+                            .padding()
                     }
                     
                 }
@@ -108,9 +116,9 @@ struct GameView: View {
     }
     
     var boardView: some View {
-        VStack{
+        VStack(alignment: .center, spacing:0){
             ForEach(0..<9) { row in
-                    HStack {
+                    HStack(alignment: .center, spacing:0){
                         Group {
                             ForEach(0..<9) { column in
                                 VStack{
@@ -172,6 +180,9 @@ struct GameView: View {
             
             showView.user.records.append(MyRecord(id: showView.user.records.count, result: result, score: score, total_score: newTotalScore))
             showView.updateRecords(id: showView.user.id!, recordsToDictionary: showView.recordsToDictionary())
+            
+            showView.user.total_score += score
+            showView.updateTotalScore(id: showView.user.id!, totalScore: showView.user.total_score)
         }
     }
     
@@ -327,12 +338,12 @@ struct GameView: View {
         
         //roomAction.room.user[roomAction.playerIdx].....
         if ((roomAction.game.players[roomAction.playerIdx].id == 0) && (roomAction.game.flag == 1)) {
-            showView.alert_msg = "\(roomAction.playerIdx)還沒輪到你\(roomAction.game.flag)"
+            showView.alert_msg = "還沒輪到你"
             showView.show_message(message: showView.alert_msg)
         }
         
         else if ((roomAction.game.players[roomAction.playerIdx].id == 1) && (roomAction.game.flag == 0)) {
-            showView.alert_msg = "\(roomAction.playerIdx)還沒輪到你\(roomAction.game.flag)"
+            showView.alert_msg = "還沒輪到你"
             showView.show_message(message: showView.alert_msg)
         }
         
