@@ -27,9 +27,16 @@ struct LogInSignUpView: View {
                 .resizable()
                 .ignoresSafeArea()
             
-            /*LogInView
-                .position(x: UIScreen.main.bounds.width * 0.49, y: UIScreen.main.bounds.height * 0.55)
-                .offset(y: -keyboard.currentHeight/2)*/
+            Button(action: {
+                withAnimation{
+                    showView.showSettingView = true
+                }
+            }, label: {
+                Image("gear")
+                    .resizable()
+                    .frame(width: showView.height * 0.03, height: showView.height * 0.03)
+            }).position(x: showView.width * 0.95, y: showView.height * 0.05)
+            
             if showLogin {
                 LogInView
             }
@@ -38,6 +45,11 @@ struct LogInSignUpView: View {
             }
             AlertView().environmentObject(showView)
         }.edgesIgnoringSafeArea(.all)
+        .disabled(showView.showSettingView ? true : false)
+        
+        if showView.showSettingView {
+            SettingView().environmentObject(showView)
+        }
     }
     
     var LogInView: some View {

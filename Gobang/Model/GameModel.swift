@@ -68,5 +68,4 @@ struct Chessboard: Codable {
 
 //var boards = [String](repeating: "無", count: 81)
 
-/*error message: 'self' used before all stored properties are initialized :22 lines*/
 

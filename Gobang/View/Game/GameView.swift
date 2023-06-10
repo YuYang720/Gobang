@@ -98,7 +98,7 @@ struct GameView: View {
             print("Game Over")
             self.isGameOver = true
             DispatchQueue.main.asyncAfter(deadline: .now() + 3 ) {
-                showView.view = "AddRoomView"
+                showView.view = "LobbyView"
                 if roomAction.room.users[roomAction.playerIdx].isHost {
                     roomAction.deleteGame(id: roomAction.room.GameID)
                     roomAction.deleteRoom(id: roomAction.room.id!)
@@ -166,9 +166,11 @@ struct GameView: View {
                 result = "lose"
                 score = 1
             }
-            //cal_score = showView.user.records[roomAction.playerIdx].total_score + score
+            // 取得前一筆記錄的total_score，如果沒有記錄則預設為0
+            let previousTotalScore = showView.user.records.last?.total_score ?? 0
+            let newTotalScore = previousTotalScore + score
             
-            showView.user.records.append(MyRecord(id: showView.user.records.count, result: result, score: score, total_score: 0))
+            showView.user.records.append(MyRecord(id: showView.user.records.count, result: result, score: score, total_score: newTotalScore))
             showView.updateRecords(id: showView.user.id!, recordsToDictionary: showView.recordsToDictionary())
         }
     }

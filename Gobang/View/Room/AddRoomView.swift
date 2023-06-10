@@ -21,6 +21,15 @@ struct AddRoomView: View {
             .edgesIgnoringSafeArea(.all)
         
         UserInfoView
+        Button(action: {
+            withAnimation{
+                showView.showSettingView = true
+            }
+        }, label: {
+            Image("gear")
+                .resizable()
+                .frame(width: showView.height * 0.03, height: showView.height * 0.03)
+        }).position(x: showView.width * 0.95, y: showView.height * 0.05)
         
         VStack {
             
@@ -86,6 +95,11 @@ struct AddRoomView: View {
             //.position(x: showView.width * 0.5, y: showView.height * 0.6)
             //.padding()
         }
+        .disabled(showView.showSettingView ? true : false)
+        
+        if showView.showSettingView {
+            SettingView().environmentObject(showView)
+        }
         
 
     }
@@ -102,7 +116,7 @@ struct AddRoomView: View {
                     .padding(.leading, 5)
                 
             )
-            .offset(x: -showView.width * 0.3)
+            .offset(x: -showView.width * 0.3, y: -showView.height * 0.3)
             .onTapGesture {
                 showView.view = "ProfileView"
             }

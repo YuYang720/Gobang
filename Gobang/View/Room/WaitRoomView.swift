@@ -26,8 +26,18 @@ struct WaitRoomView: View {
                 .edgesIgnoringSafeArea(.all)
             Text("房號: \(roomAction.room.invitationCode)")
                 .font(.title)
-                .position(x: showView.width * 0.7, y: showView.height * 0.1)
+                .position(x: showView.width * 0.5, y: showView.height * 0.1)
                 .foregroundColor(.black)
+            
+            Button(action: {
+                withAnimation{
+                    showView.showSettingView = true
+                }
+            }, label: {
+                Image("gear")
+                    .resizable()
+                    .frame(width: showView.height * 0.03, height: showView.height * 0.03)
+            }).position(x: showView.width * 0.95, y: showView.height * 0.05)
             
             Button {
                 showView.view = "AddRoomView"
@@ -92,6 +102,11 @@ struct WaitRoomView: View {
                 showView.view = "GameView"
             }
         })
+        .disabled(showView.showSettingView ? true : false)
+        
+        if showView.showSettingView {
+            SettingView().environmentObject(showView)
+        }
     }
 }
 

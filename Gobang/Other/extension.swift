@@ -9,6 +9,21 @@ import Foundation
 import SwiftUI
 import AVFoundation
 
+extension AVPlayer {
+    
+    static var queuePlayer = AVQueuePlayer()
+
+    static var playerLooper: AVPlayerLooper!
+    
+    static func playFirstQuarter() {
+        queuePlayer.removeAllItems()
+        guard let Url = Bundle.main.url(forResource: "First Quarter", withExtension: "mp3") else{fatalError("Failed to fin sound file.")}
+        let item = AVPlayerItem(url: Url)
+        playerLooper = AVPlayerLooper(player: queuePlayer, templateItem: item)
+        queuePlayer.play()
+    }
+}
+
 final class KeyboardResponder: ObservableObject {
     private var notificationCenter: NotificationCenter
     @Published private(set) var currentHeight: CGFloat = 0

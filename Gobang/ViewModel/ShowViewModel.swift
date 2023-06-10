@@ -14,6 +14,7 @@ class ShowViewModel: StateControl, ObservableObject {
     @Published var goSetting: Bool = false
     @Published var alert_msg = ""
     @Published var alert_opacity = 0.0
+    @Published var showSettingView: Bool = false
     
     var width: CGFloat
     var height: CGFloat

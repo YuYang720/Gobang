@@ -7,12 +7,15 @@
 
 import SwiftUI
 import Firebase
+import AVFoundation
 
 @main
 struct GobangApp: App {
     
     init(){
         FirebaseApp.configure()
+        AVPlayer.playFirstQuarter()
+        AVPlayer.queuePlayer.play()
     }
     
     var body: some Scene {
